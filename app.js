@@ -1,16 +1,16 @@
-require("dotenv/config");
+require("dotenv/config")
 
-require("./db");
+require("./db")
+const express = require("express")
 
-const express = require("express");
+const app = express()
 
-const app = express();
+require("./config")(app)
 
-require("./config")(app);
+const allRoutes = require("./routes/index.routes")
 
-const allRoutes = require("./routes/index.routes");
-app.use("/api", allRoutes);
+app.use("/api", allRoutes)
 
-require("./error-handling")(app);
+require("./error-handling")(app)
 
-module.exports = app;
+module.exports = app

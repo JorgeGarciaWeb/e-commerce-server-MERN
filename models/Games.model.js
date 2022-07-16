@@ -1,11 +1,11 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require("mongoose")
 
 const gameSchema = new Schema(
     {
         name: {
             type: String,
             required: true
-           
+
         },
 
         release: {
@@ -13,31 +13,31 @@ const gameSchema = new Schema(
             required: true
         },
 
-        img:{
+        img: {
             type: String,
             required: true
         },
 
-        rating:{
+        rating: {
             type: Number,
             required: true
         },
 
-        platform:{
-            type:[String],
+        platform: {
+            type: [String],
             required: true,
         },
 
-        genre:{
+        genre: {
             type: String
         }
     },
     {
-        
+
         timestamps: true,
     }
-);
+)
 
-const Game = model("Game", gameSchema);
+const Game = model("Game", gameSchema)
 
-module.exports = Game;
+module.exports = Game
