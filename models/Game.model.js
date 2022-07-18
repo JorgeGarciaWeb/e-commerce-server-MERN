@@ -51,7 +51,12 @@ const gameSchema = new Schema(
 
         Studio: {
             type: String
-        }
+        },
+        
+        owner: {
+            type: Schema.Types.ObjectId,
+            ref: "User"
+        },
     },
     {
 

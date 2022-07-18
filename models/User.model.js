@@ -34,6 +34,9 @@ const userSchema = new Schema(
       enum: ['USER', 'ADMIN'],
       default: 'USER'
     },
+    favorites: {
+      type: [String]
+    },
   },
 
   {
