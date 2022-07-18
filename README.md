@@ -1,25 +1,27 @@
 # Lo tienes tío
 Server side
 
-| URL        | VERB           | DESCRIPTION  |
+| URL        | METHOD           | DESCRIPTION  |
 | ------------- |:-------------:| -----:|
-| /register      | GET | Singup user |
-| /singUp     | GET      |  Login user |
-| /logOut | POST      |   Logout user |
+| /api/register      | GET | Singup user |
+| /api/singUp     | GET      |  Login user |
+| /api/logOut | POST      |   Logout user |
 
 
-| URL        | VERB           | DESCRIPTION  |
+| URL        | METHOD           | DESCRIPTION  |
 | ------------- |:-------------:| -----:|
-| /getAllGames      | GET | Show a list of all games |
-| /getGame/:id      | GET      |  Details of a specific game |
-| /addGames | POST      |   Register a new game |
-| /updateGame/:id | POST      |   Update a specific game |
-| /deleteGame/:id | POST      |   Delete a specific game |
+| /api/getAllGames      | GET | Show a list of all games |
+| /api/getGame/:id      | GET      |  Details of a specific game |
+| /api/addGames | POST      |   Register a new game |
+| /api/updateGame/:id | PUT      |   Update a specific game |
+| /api/deleteGame/:id | DELETE      |   Delete a specific game |
 
-| URL        | VERB           | DESCRIPTION  |
+| URL        | METHOD           | DESCRIPTION  |
 | ------------- |:-------------:| -----:|
-| /users   | GET | Show a list of all users |
-| /users/:id      | GET      |  Details of a specific users |
-| /addUsers | POST      |   Register a new users |
-| /updateUsers/:id | POST      |   Update a specific users |
-| /deleteUsers/:id | POST      |   Delete a specific users |
+| /api/users   | GET | Show a list of all users |
+| /api/users/:id      | GET      |  Details of a specific users |
+| /api/addUsers | POST      |   Register a new users |
+| /api/updateUsers/:id | PUT      |   Update a specific users |
+| /api/deleteUsers/:id | DELETE      |   Delete a specific users |
+
+
