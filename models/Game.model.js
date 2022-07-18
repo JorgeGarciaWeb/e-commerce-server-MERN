@@ -14,8 +14,12 @@ const gameSchema = new Schema(
         },
 
         img: {
-            type: String,
+            type: [String],
             required: true
+        },
+
+        description: {
+            type: String
         },
 
         rating: {
@@ -23,14 +27,23 @@ const gameSchema = new Schema(
             required: true
         },
 
-        platform: {
-            type: [String],
+        platforms: {
+            type: String,
+            enum: ['Play Station 4', 'Xbox One', 'PC'],
             required: true,
         },
 
         genre: {
+            type: [String]
+        },
+
+        price: {
+            type: Number
+        },
+
+        studio: {
             type: String
-        }
+        },
     },
     {
 
