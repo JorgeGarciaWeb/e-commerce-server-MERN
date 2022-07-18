@@ -1,10 +1,12 @@
 [
-    {
-        "name": "Grand Theft Auto V",
-        "release": "2013-09-17",
-        "img": "https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg",
-        "rating": 4.48,
-        "platform": "PlayStation 4, Xbox One, PC",
-        "genre": "Action"
-    }
+        {
+                "name": "Grand Theft Auto V",
+                "release": "2013-09-17",
+                "img": "https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg",
+                "rating": 4.48,
+                "platform": "PlayStation 4, Xbox One, PC",
+                "genre": "Action",
+                "description": "Grand Theft Auto V is an action-adventure game played from either a third-person or first-person perspective. Players complete missions—linear scenarios with set objectives—to progress through the story. Outside of the missions, players may freely roam the open world.",
+                "price": "60€"
+        }
 ]
