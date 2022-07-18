@@ -20,7 +20,6 @@ Server side
 | ------------- |:-------------:| -----:|
 | /api/users   | GET | Show a list of all users |
 | /api/users/:id      | GET      |  Details of a specific users |
-| /api/addUsers | POST      |   Register a new users |
 | /api/updateUsers/:id | PUT      |   Update a specific users |
 | /api/deleteUsers/:id | DELETE      |   Delete a specific users |
 
