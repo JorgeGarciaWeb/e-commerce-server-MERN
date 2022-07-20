@@ -1,12 +1,23 @@
 [
         {
-                "name": "Grand Theft Auto V",
-                "release": "2013-09-17",
-                "img": "https://media.rawg.io/media/games/456/456dea5e1c7e3cd07060c14e96612001.jpg",
-                "rating": 4.48,
-                "platform": "PlayStation 4, Xbox One, PC",
+                "name": "God of War Ragnarök",
+                "studio": "Santa Monica Studio",
+                "release": "2022-11-09",
+                "imgs": [
+                        "https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_95614840/fee_786_587_png",
+                        "https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_95614826/fee_786_587_png",
+                        "https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_95614827/fee_786_587_png",
+                        "https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_95614830/fee_786_587_png",
+                        "https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_95614834/fee_786_587_png",
+                        "https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_95614836/fee_786_587_png",
+                        "https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_95614837/fee_786_587_png",
+                        "https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_95614838/fee_786_587_png",
+                        "https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MMS_95614839/fee_786_587_png"
+                ],
+                "rating": 4.65,
+                "platform": "PlayStation 4",
                 "genre": "Action",
-                "description": "Grand Theft Auto V is an action-adventure game played from either a third-person or first-person perspective. Players complete missions—linear scenarios with set objectives—to progress through the story. Outside of the missions, players may freely roam the open world.",
-                "price": "60€"
+                "description": "From Santa Monica Studio comes the sequel to the critically acclaimed God of War (2018). Fimbulwinter is well underway. Kratos and Atreus must journey to each of the Nine Realms in search of answers as Asgardian forces prepare for a prophesied battle that will end the world. Along the way they will explore stunning, mythical landscapes, and face fearsome enemies in the form of Norse gods and monsters. The threat of Ragnarök grows ever closer. Kratos and Atreus must choose between their own safety and the safety of the realms.",
+                "price": 69.99
         }
 ]
