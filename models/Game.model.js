@@ -45,14 +45,6 @@ const gameSchema = new Schema(
             type: String
         },
 
-        price: {
-            type: Number
-        },
-
-        Studio: {
-            type: String
-        },
-        
         owner: {
             type: Schema.Types.ObjectId,
             ref: "User"

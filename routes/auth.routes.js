@@ -6,14 +6,13 @@ const jwt = require("jsonwebtoken")
 
 const { isAuthenticated } = require('../middleware/jwt.middleware')
 
-
 const router = require("express").Router()
 const saltRounds = 10
 
 //SIGNUP
 router.post('/signup', (req, res, next) => {
 
-    const { email, password, username } = req.body
+    const { name, email, password, username } = req.body
 
     if (password.length < 2) {
         res.status(400).json({ message: 'Password must have at least 3 characters' })
@@ -32,11 +31,11 @@ router.post('/signup', (req, res, next) => {
             const salt = bcrypt.genSaltSync(saltRounds)
             const hashedPassword = bcrypt.hashSync(password, salt)
 
-            return User.create({ email, password: hashedPassword, username })
+            return User.create({ name, email, password: hashedPassword, username })
 
         })
         .then((createdUser) => {
-            console.log(createdUser)
+            console.log("-----------------", createdUser)
             const { email, username, _id } = createdUser
             const user = { email, username, _id }
 
@@ -73,7 +72,7 @@ router.post('/login', (req, res, next) => {
 
                 const payload = { _id, email, username }
 
-                const authToken = jwt.sing(
+                const authToken = jwt.sign(
                     payload,
                     process.env.TOKEN_SECRET,
                     { algorithm: 'HS256', expiresIn: "6h" }
@@ -88,16 +87,15 @@ router.post('/login', (req, res, next) => {
                 res.status(401).json({ message: 'Unable to authenticate the user' })
             }
         })
-        .catch(err => res.status(500).json({ message: 'Internal Server Error' }))
+        .catch(err => console.log(err))
 })
 
 router.get('/verify', isAuthenticated, (req, res) => {
 
+    console.log('token', req.payload)
     setTimeout(() => {
         res.status(200).json(req.payload)
-    }, 1500)
+    }, 3500)
 })
 
 module.exports = router
-
-
