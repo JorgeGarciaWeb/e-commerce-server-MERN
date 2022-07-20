@@ -35,7 +35,7 @@ router.post('/signup', (req, res, next) => {
 
         })
         .then((createdUser) => {
-            console.log("-----------------", createdUser)
+
             const { email, username, _id } = createdUser
             const user = { email, username, _id }
 
@@ -68,9 +68,9 @@ router.post('/login', (req, res, next) => {
 
             if (bcrypt.compareSync(password, foundUser.password)) {
 
-                const { _id, email, username } = foundUser
+                const { _id, email, username, items } = foundUser
 
-                const payload = { _id, email, username }
+                const payload = { _id, email, username, items }
 
                 const authToken = jwt.sign(
                     payload,

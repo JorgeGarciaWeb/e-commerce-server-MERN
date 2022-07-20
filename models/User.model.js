@@ -37,6 +37,15 @@ const userSchema = new Schema(
     favorites: {
       type: [String]
     },
+    items: [{
+      product: {
+        type: Schema.Types.ObjectId,
+        ref: 'Game'
+      },
+      quantity: {
+        type: Number
+      }
+    }]
   },
 
   {
