@@ -1,5 +1,6 @@
 const router = require("express").Router()
 
+const { isAuthenticated } = require('../middleware/jwt.middleware')
 const Game = require('./../models/Game.model')
 
 
@@ -23,10 +24,12 @@ router.get("/getOneGame/:game_id", (req, res) => {
 })
 
 
-router.post("/addGame", (req, res) => {
+router.post("/addGame", isAuthenticated, (req, res) => {
+
+    const { user_id } = req.payload
 
     Game
-        .create(req.body)
+        .create({ owner, ...req.body })
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
