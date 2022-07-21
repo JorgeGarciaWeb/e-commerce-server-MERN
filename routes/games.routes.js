@@ -26,7 +26,7 @@ router.get("/getOneGame/:game_id", (req, res) => {
 
 router.post("/addGame", isAuthenticated, (req, res) => {
 
-    const { user_id } = req.payload
+    const { _id: owner } = req.payload
 
     Game
         .create({ owner, ...req.body })

@@ -2,8 +2,9 @@ const router = require('express').Router()
 
 const { isAuthenticated } = require('../middleware/jwt.middleware')
 const User = require('../models/User.model')
-const Cart = require('./../models/Cart.model')
-
+router.get('/', (req, res) => {
+    res.json("no arriesgo")
+})
 
 router.get('/getItems', isAuthenticated, (req, res) => {
 
