@@ -32,4 +32,23 @@ router.post('/addItem', isAuthenticated, (req, res) => {
 
 })
 
+router.post('/removeItem', isAuthenticated, (req, res) => {
+
+    const { _id: user_id } = req.payload
+    const { game_id } = req.body
+
+    const item = {
+        product: game_id,
+        quantity: 1
+    }
+
+
+    User
+        .findByIdAndUpdate(user_id, { $pull: { items: item } }, { new: true })
+        .then(response => res.json(response))
+        .catch(err => console.log(err))
+
+})
+
+
 module.exports = router
