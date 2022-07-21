@@ -42,13 +42,11 @@ router.post('/removeItem', isAuthenticated, (req, res) => {
     }
 
 
-    User
         .findByIdAndUpdate(user_id, { $pull: { items: item } }, { new: true })
         .then(response => res.json(response))
         .catch(err => console.log(err))
 
 })
-
 
 
 module.exports = router
