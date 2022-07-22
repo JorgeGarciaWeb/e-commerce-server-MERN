@@ -9,6 +9,7 @@ router.get('/getItems', isAuthenticated, (req, res) => {
 
     User
         .findById(user_id)
+        // .select(...)
         .populate({
             path: 'items',
             populate: {
@@ -16,12 +17,12 @@ router.get('/getItems', isAuthenticated, (req, res) => {
                 model: 'Game'
             }
         })
-        .then(user => res.json({ items: user.items }))
+        .then(({ items }) => res.json({ items }))
         .catch(err => console.log(err))
 })
 
 
-router.post('/addItem', isAuthenticated, (req, res) => {
+router.put('/addItem', isAuthenticated, (req, res) => {
 
     const { _id: user_id } = req.payload
     const { game_id } = req.body
@@ -38,7 +39,7 @@ router.post('/addItem', isAuthenticated, (req, res) => {
 
 })
 
-router.post('/removeItem', isAuthenticated, (req, res) => {
+router.put('/removeItem', isAuthenticated, (req, res) => {
 
     const { _id: user_id } = req.payload
     const { game_id } = req.body
@@ -52,7 +53,6 @@ router.post('/removeItem', isAuthenticated, (req, res) => {
         .findByIdAndUpdate(user_id, { $pull: { items: item } }, { new: true })
         .then(response => res.json(response))
         .catch(err => console.log(err))
-
 })
 
 
