@@ -34,6 +34,13 @@ router.put('/addItem', isAuthenticated, (req, res) => {
 
     User
         .findByIdAndUpdate(user_id, { $push: { items: item } }, { new: true })
+        .populate({
+            path: 'items',
+            populate: {
+                path: 'product',
+                model: 'Game'
+            }
+        })
         .then(response => res.json(response))
         .catch(err => console.log(err))
 
