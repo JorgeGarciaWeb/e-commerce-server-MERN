@@ -8,6 +8,7 @@ router.get("/getAllGames", (req, res) => {
 
     Game
         .find()
+        // .select(...)
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
@@ -35,7 +36,7 @@ router.post("/addGame", isAuthenticated, (req, res) => {
 })
 
 
-router.post("/updateGame/:game_id", (req, res) => {
+router.put("/updateGame/:game_id", (req, res) => {
 
     const { game_id } = req.params
 
@@ -46,7 +47,7 @@ router.post("/updateGame/:game_id", (req, res) => {
 })
 
 
-router.post("/deleteGame/:game_id", (req, res) => {
+router.delete("/deleteGame/:game_id", (req, res) => {
 
     const { game_id } = req.params
 
