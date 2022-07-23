@@ -12,4 +12,7 @@ router.use('/user', require('./user.routes'))
 //CART ROUTES
 router.use('/cart', require('./cart.routes'))
 
+//FAVORITES ROUTES
+router.use('/favorites', require('./favorites.routes'))
+
 module.exports = router

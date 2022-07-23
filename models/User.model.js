@@ -34,9 +34,12 @@ const userSchema = new Schema(
       enum: ['USER', 'ADMIN'],
       default: 'USER'
     },
-    favorites: {
-      type: [String]
-    },
+
+    favorites: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Game'
+    }],
+
     items: [{
       product: {
         type: Schema.Types.ObjectId,

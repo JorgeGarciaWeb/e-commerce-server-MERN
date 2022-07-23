@@ -9,7 +9,7 @@ router.get('/getItems', isAuthenticated, (req, res) => {
 
     User
         .findById(user_id)
-        // .select(...)
+        .select('items')
         .populate({
             path: 'items',
             populate: {

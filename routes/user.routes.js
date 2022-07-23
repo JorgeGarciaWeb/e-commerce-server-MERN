@@ -8,6 +8,7 @@ router.get('/profile/:user_id', isAuthenticated, (req, res) => {
 
     User
         .findById(user_id)
+        .populate('favorites')
         .then(response => res.json(response))
         .catch(err => console.log(err))
 })
