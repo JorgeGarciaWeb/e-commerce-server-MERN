@@ -14,5 +14,7 @@ router.use('/cart', require('./cart.routes'))
 
 //FAVORITES ROUTES
 router.use('/favorites', require('./favorites.routes'))
+//UPLOAD ROUTES
+router.use('/upload', require('./upload.routes'))
 
 module.exports = router
