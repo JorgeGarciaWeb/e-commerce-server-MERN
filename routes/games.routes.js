@@ -40,8 +40,10 @@ router.put("/updateGame/:game_id", (req, res) => {
 
     const { game_id } = req.params
 
+    const { name, release, imgs, description, rating, platforms, genre, price, studio } = req.body
+
     Game
-        .findByIdAndUpdate(game_id, req.body)
+        .findByIdAndUpdate(game_id, { name, release, imgs, description, rating, platforms, genre, price, studio })
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
