@@ -29,7 +29,7 @@ const gameSchema = new Schema(
 
         platforms: {
             type: String,
-            enum: ['Play Station 4', 'Xbox One', 'PC'],
+            enum: ['Play Station 4', 'Xbox One', 'PC', 'Nintendo', 'Play Station 5', 'Xbox Series X'],
             required: true,
         },
 
