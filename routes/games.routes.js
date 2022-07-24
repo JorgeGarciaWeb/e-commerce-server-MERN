@@ -47,7 +47,7 @@ router.put("/updateGame/:game_id", (req, res) => {
 })
 
 
-router.delete("/deleteGame/:game_id", (req, res) => {
+router.delete('/deleteGame/:game_id', (req, res) => {
 
     const { game_id } = req.params
 
