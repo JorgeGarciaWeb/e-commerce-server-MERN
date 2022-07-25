@@ -48,6 +48,16 @@ router.put("/updateGame/:game_id", (req, res) => {
         .catch(err => res.status(500).json(err))
 })
 
+router.get('/getFilteredGames', (req, res) => {
+
+    const { name } = req.query
+
+    Game
+        .find({ name: new RegExp(name, 'i') })
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json(err))
+})
+
 
 router.delete('/deleteGame/:game_id', (req, res) => {
 
