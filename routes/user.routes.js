@@ -13,6 +13,7 @@ router.get('/profile/:user_id', isAuthenticated, (req, res) => {
         .catch(err => console.log(err))
 })
 
+
 router.put('/profile/edit/:user_id', isAuthenticated, (req, res) => {
 
     const { _id: user_id } = req.payload

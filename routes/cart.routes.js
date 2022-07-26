@@ -33,7 +33,7 @@ router.put('/addItem', isAuthenticated, (req, res) => {
     }
 
     User
-        .findByIdAndUpdate(user_id, { $push: { items: item } }, { new: true })
+        .findOne(user_id, { $push: { items: item } }, { new: true })
         .populate({
             path: 'items',
             populate: {
@@ -49,15 +49,17 @@ router.put('/addItem', isAuthenticated, (req, res) => {
 router.put('/removeItem', isAuthenticated, (req, res) => {
 
     const { _id: user_id } = req.payload
-    const { game_id } = req.body
-
-    const item = {
-        product: game_id,
-        quantity: 1
-    }
+    const { item_id } = req.body
 
     User
-        .findByIdAndUpdate(user_id, { $pull: { items: item } }, { new: true })
+        .findByIdAndUpdate(user_id, { $pull: { items: { _id: item_id } } }, { new: true })
+        .populate({
+            path: 'items',
+            populate: {
+                path: 'product',
+                model: 'Game'
+            }
+        })
         .then(response => res.json(response))
         .catch(err => console.log(err))
 })

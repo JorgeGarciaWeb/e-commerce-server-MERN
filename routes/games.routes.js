@@ -1,15 +1,22 @@
 const router = require("express").Router()
 
 const { isAuthenticated } = require('../middleware/jwt.middleware')
+const User = require("../models/User.model")
 const Game = require('./../models/Game.model')
 
 
-router.get("/getAllGames", (req, res) => {
+router.get("/getAllGames", isAuthenticated, (req, res) => {
 
-    Game
-        .find()
-        // .select(...)
-        .then(response => res.json(response))
+    const { _id: user_id } = req.payload
+
+    const promises = [
+        Game.find(),
+        User.findById(user_id).select('favorites')
+    ]
+
+    Promise
+        .all(promises)
+        .then(([gamesList, userFavs]) => res.json({ gamesList, favorites: userFavs.favorites }))
         .catch(err => res.status(500).json(err))
 })
 
