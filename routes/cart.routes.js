@@ -49,15 +49,10 @@ router.put('/addItem', isAuthenticated, (req, res) => {
 router.put('/removeItem', isAuthenticated, (req, res) => {
 
     const { _id: user_id } = req.payload
-    const { game_id } = req.body
-
-    const item = {
-        product: game_id,
-        quantity: 1
-    }
+    const { item_id } = req.body
 
     User
-        .findByIdAndUpdate(user_id, { $pull: { items: item } }, { new: true })
+        .findByIdAndUpdate(user_id, { $pull: { items: item_id } }, { new: true })
         .then(response => res.json(response))
         .catch(err => console.log(err))
 })
