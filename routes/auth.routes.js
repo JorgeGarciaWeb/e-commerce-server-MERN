@@ -95,7 +95,7 @@ router.get('/verify', isAuthenticated, (req, res) => {
 
     setTimeout(() => {
         res.status(200).json(req.payload)
-    }, 3500)
+    })
 })
 
 module.exports = router
