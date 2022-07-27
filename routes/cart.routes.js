@@ -33,7 +33,7 @@ router.put('/addItem', isAuthenticated, (req, res) => {
     }
 
     User
-        .findOne(user_id, { $push: { items: item } }, { new: true })
+        .findByIdAndUpdate(user_id, { $push: { items: item } }, { new: true })
         .populate({
             path: 'items',
             populate: {
