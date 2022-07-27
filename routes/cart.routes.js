@@ -33,17 +33,17 @@ router.put('/addItem', isAuthenticated, (req, res) => {
     }
 
     User
-        .findOne(user_id, { $push: { items: item } }, { new: true })
-        .populate({
-            path: 'items',
-            populate: {
-                path: 'product',
-                model: 'Game'
+        .findOne({ user_id })
+        .then(({ items }) => items.some(item => item.product.toString() === game_id))
+        .then(exists => {
+            if (exists) {
+                return User.findByIdAndUpdate(user_id, { $inc: { quantity: 1 } })
+            } else {
+                return User.findByIdAndUpdate(user_id, { $push: { items: item } })
             }
         })
         .then(response => res.json(response))
         .catch(err => console.log(err))
-
 })
 
 router.put('/removeItem', isAuthenticated, (req, res) => {
