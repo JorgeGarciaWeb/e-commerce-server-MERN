@@ -3,6 +3,7 @@ const router = require('express').Router()
 const { isAuthenticated } = require('../middleware/jwt.middleware')
 const User = require('../models/User.model')
 
+
 router.get('/getItems', isAuthenticated, (req, res) => {
 
     const { _id: user_id } = req.payload
@@ -36,10 +37,16 @@ router.put('/addItem', isAuthenticated, (req, res) => {
         .findOne({ user_id })
         .then(({ items }) => items.some(item => item.product.toString() === game_id))
         .then(exists => {
-            if (exists) {
-                return User.findByIdAndUpdate(user_id, { $inc: { quantity: 1 } })
+            if (!exists) {
+                return User.findByIdAndUpdate(user_id, { $push: { items: item } }, { new: true })
             } else {
-                return User.findByIdAndUpdate(user_id, { $push: { items: item } })
+                return User
+                    .findOne({ user_id })
+                    .then(({ items }) => {
+                        items.forEach(item => { if (item.product.toString() === game_id) item.quantity++ })
+                        return User.findByIdAndUpdate(user_id, { items }, { new: true })
+                    })
+                    .catch(err => console.log(err))
             }
         })
         .then(response => res.json(response))
@@ -47,22 +54,40 @@ router.put('/addItem', isAuthenticated, (req, res) => {
 })
 
 router.put('/removeItem', isAuthenticated, (req, res) => {
-
     const { _id: user_id } = req.payload
-    const { item_id } = req.body
+    const { game_id } = req.body
+
+    const item = {
+        product: game_id,
+        quantity: 1
+    }
 
     User
-        .findByIdAndUpdate(user_id, { $pull: { items: { _id: item_id } } }, { new: true })
-        .populate({
-            path: 'items',
-            populate: {
-                path: 'product',
-                model: 'Game'
+        .findOne({ user_id })
+        .then(({ items }) => items.some(item => {
+            if (item.product.toString() === game_id) {
+                if (item.quantity === 1) {
+                    return true
+                }
+            }
+            return false
+
+        }))
+        .then(exists => {
+            if (exists) {
+                return User.findByIdAndUpdate(user_id, { $pull: { items: item } }, { new: true })
+            } else {
+                return User
+                    .findOne({ user_id })
+                    .then(({ items }) => {
+                        items.forEach(item => { if (item.product.toString() === game_id) item.quantity-- })
+                        return User.findByIdAndUpdate(user_id, { items }, { new: true })
+                    })
+                    .catch(err => console.log(err))
             }
         })
         .then(response => res.json(response))
         .catch(err => console.log(err))
 })
-
 
 module.exports = router
