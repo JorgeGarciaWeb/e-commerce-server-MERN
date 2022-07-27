@@ -70,7 +70,8 @@ router.post('/login', (req, res, next) => {
 
                 const { _id, email, username } = foundUser
 
-                const payload = { _id, email, username }
+                const role = foundUser.role || 'USER'
+                const payload = { _id, email, username, role }
 
                 const authToken = jwt.sign(
                     payload,
@@ -92,7 +93,6 @@ router.post('/login', (req, res, next) => {
 
 router.get('/verify', isAuthenticated, (req, res) => {
 
-    console.log('token', req.payload)
     setTimeout(() => {
         res.status(200).json(req.payload)
     }, 3500)

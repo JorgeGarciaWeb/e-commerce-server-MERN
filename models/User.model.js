@@ -26,12 +26,12 @@ const userSchema = new Schema(
 
     avatar: {
       type: String,
-      default: "./../images/randomAvatar.png"
+      default: "../public/images/randomAvatar.png"
     },
 
     role: {
       type: String,
-      enum: ['USER', 'ADMIN'],
+      enum: ['ADMIN', 'USER'],
       default: 'USER'
     },
 
