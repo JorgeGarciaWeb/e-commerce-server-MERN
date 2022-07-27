@@ -25,4 +25,15 @@ router.put('/removeFromFavorites/:game_id', isAuthenticated, (req, res) => {
         .catch(err => console.log(err))
 })
 
+router.get('/favorite-games', isAuthenticated, (req, res) => {
+
+    const { _id: user_id } = req.payload
+
+    User
+        .findById(user_id)
+        .select('favorites')
+        .then(response => res.json(response.favorites))
+        .catch(err => console.log(err))
+})
+
 module.exports = router

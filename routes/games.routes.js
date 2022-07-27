@@ -5,18 +5,11 @@ const User = require("../models/User.model")
 const Game = require('./../models/Game.model')
 
 
-router.get("/getAllGames", isAuthenticated, (req, res) => {
+router.get("/getAllGames", (req, res) => {
 
-    const { _id: user_id } = req.payload
-
-    const promises = [
-        Game.find(),
-        User.findById(user_id).select('favorites')
-    ]
-
-    Promise
-        .all(promises)
-        .then(([gamesList, userFavs]) => res.json({ gamesList, favorites: userFavs.favorites }))
+    Game
+        .find()
+        .then(games => res.json(games))
         .catch(err => res.status(500).json(err))
 })
 
