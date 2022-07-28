@@ -46,8 +46,7 @@ const userSchema = new Schema(
         ref: 'Game'
       },
       quantity: {
-        type: Number,
-        default: 1
+        type: Number
       }
     }]
   },
