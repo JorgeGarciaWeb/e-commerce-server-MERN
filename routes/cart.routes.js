@@ -34,14 +34,14 @@ router.put('/addItem', isAuthenticated, (req, res) => {
     }
 
     User
-        .findOne({ user_id })
+        .findById(user_id)
         .then(({ items }) => items.some(item => item.product.toString() === game_id))
         .then(exists => {
             if (!exists) {
                 return User.findByIdAndUpdate(user_id, { $push: { items: item } }, { new: true })
             } else {
                 return User
-                    .findOne({ user_id })
+                    .findById(user_id)
                     .then(({ items }) => {
                         items.forEach(item => { if (item.product.toString() === game_id) item.quantity++ })
                         return User.findByIdAndUpdate(user_id, { items }, { new: true })
@@ -64,7 +64,7 @@ router.put('/removeItem', isAuthenticated, (req, res) => {
     }
 
     User
-        .findOne({ user_id })
+        .findById(user_id)
         .then(({ items }) => items.some(item => {
             if (item.product.toString() === game_id) {
                 if (item.quantity === 1) {
@@ -79,7 +79,7 @@ router.put('/removeItem', isAuthenticated, (req, res) => {
                 return User.findByIdAndUpdate(user_id, { $pull: { items: item } }, { new: true })
             } else {
                 return User
-                    .findOne({ user_id })
+                    .findById(user_id)
                     .then(({ items }) => {
                         items.forEach(item => { if (item.product.toString() === game_id) item.quantity-- })
                         return User.findByIdAndUpdate(user_id, { items }, { new: true })
