@@ -50,10 +50,10 @@ router.put("/updateGame/:game_id", (req, res) => {
 
 router.get('/getFilteredGames', (req, res) => {
 
-    const { name, platforms } = req.query
+    const { name } = req.query
 
     Game
-        .find({ name, platforms: new RegExp(name, platforms, 'i') })
+        .find({ name: new RegExp(name, 'i') })
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
